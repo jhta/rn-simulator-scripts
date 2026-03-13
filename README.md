@@ -14,75 +14,43 @@ This reloads the **React Native JS bundle only** — it does not restart the sim
 
 ---
 
-## Scripts
+## Install
 
-### `scripts/reload-sim.sh`
+```bash
+git clone https://github.com/jhta/rn-simulator-scripts.git
+cd rn-simulator-scripts
+bash install.sh
+```
 
-Reloads the JS bundle by hitting Metro's API.
+The script will:
+- Create `~/raycast-scripts/` if it doesn't exist
+- Symlink both scripts there (so `git pull` keeps them up to date)
+- Open Raycast's Script Commands settings automatically
 
+**One manual step:** in the Raycast window that opens, click **Add Directory** and select `~/raycast-scripts`.
+
+That's it. Search **"Reload iOS Simulator"** in Raycast and run it.
+
+---
+
+## Usage
+
+**From Raycast:** search `Reload iOS Simulator` → press `Enter`
+
+**From terminal:**
 ```bash
 bash scripts/reload-sim.sh
 ```
 
-Supports a custom Metro port via env var:
-
+Custom Metro port:
 ```bash
 METRO_PORT=8082 bash scripts/reload-sim.sh
 ```
-
-### `raycast/reload-ios-simulator.sh`
-
-Raycast script command that triggers the reload. Search **"Reload iOS Simulator"** in Raycast to run it.
-
----
-
-## Setup
-
-### 1. Clone the repo
-
-```bash
-git clone https://github.com/jhta/rn-simulator-scripts.git
-```
-
-### 2. Make scripts executable
-
-```bash
-chmod +x scripts/reload-sim.sh
-chmod +x raycast/reload-ios-simulator.sh
-```
-
-### 3. Copy the reload script to your scripts folder
-
-The Raycast script expects `reload-sim.sh` at `~/raycast-scripts/reload-sim.sh`:
-
-```bash
-mkdir -p ~/raycast-scripts
-cp scripts/reload-sim.sh ~/raycast-scripts/reload-sim.sh
-```
-
-Or symlink it if you want to keep pulling updates:
-
-```bash
-ln -s "$(pwd)/scripts/reload-sim.sh" ~/raycast-scripts/reload-sim.sh
-```
-
-### 4. Add the Raycast script directory
-
-1. Open Raycast → `Cmd+,` → **Extensions** → **Script Commands**
-2. Click **Add Directory** → select `~/raycast-scripts`
-3. Raycast will auto-discover `reload-ios-simulator.sh`
-
-> If you prefer, you can point Raycast directly at the `raycast/` folder inside the cloned repo — no need to copy anything.
-
-### 5. Use it
-
-- Open Raycast (`Cmd+Space`) and search **"Reload iOS Simulator"**
-- Or run `bash scripts/reload-sim.sh` directly from your terminal
 
 ---
 
 ## Requirements
 
 - macOS
-- [Raycast](https://www.raycast.com/) (for the script command)
+- [Raycast](https://www.raycast.com/)
 - Metro bundler running (`yarn start` / `npx react-native start`)
